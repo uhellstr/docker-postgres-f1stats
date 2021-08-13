@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Loading formula 1 data from ergast..."
+psql -U f1_stats -d f1stats -f ./f1_load_data.sql

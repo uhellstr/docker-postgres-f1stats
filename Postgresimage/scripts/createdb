@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "Creating database f1stats.."
+createdb f1stats --encoding='utf-8' --locale=en_US.utf8 --template=template0;
+psql -c "alter user postgres with password 'f1stats'"
+echo "creating user f1_stats"
+psql -U postgres -d f1stats -c "create user f1_stats with encrypted password 'f1stats'"
+echo "Setting up grants for f1_stats"
+psql -U postgres -d f1stats -c "GRANT ALL PRIVILEGES ON DATABASE f1stats to f1_stats"
+echo "Setting up plpython3u extension"
+psql -U postgres -d f1stats -c "create extension plpython3u"
+psql -U postgres -d f1stats -c "UPDATE pg_language SET lanpltrusted = true WHERE lanname LIKE 'plpython3u'"
+echo "Creating schema F1_DATA.."
+psql -U f1_stats -d f1stats -c "CREATE SCHEMA F1_DATA"
+psql -U postgres -d f1stats -c "GRANT USAGE ON SCHEMA f1_data TO f1_stats"
