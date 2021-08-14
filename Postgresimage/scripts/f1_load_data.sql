@@ -31,20 +31,25 @@ DO $$ BEGIN
     PERFORM f1_data.f_get_f1_race_dates();
 END $$;
 
-DO $$ BEGIN
-    PERFORM f1_data.f_get_f1_raceresults();
-END $$;
-
+-- Older versions then postgres 11 needs to use function calls
+--DO $$ BEGIN
+--    PERFORM f1_data.f_get_f1_raceresults();
+--END $$;
+call f1_data.p_get_f1_raceresults();
 
 -- call function to insert race qualification times
-DO $$ BEGIN
-    PERFORM f1_data.f_get_f1_qualification();
-END $$;
+-- Older versions then postgres 11 needs to use function calls
+--DO $$ BEGIN
+--    PERFORM f1_data.f_get_f1_qualification();
+--END $$;
+call f1_data.p_get_f1_qualification();
 
--- call function to insert laptimes
-DO $$ BEGIN
-    PERFORM f1_data.f_get_f1_laptimes();
-END $$;
+-- call procedure to insert laptimes
+-- Older versions then postgres 11 needs to use function calls
+--DO $$ BEGIN
+--    PERFORM f1_data.f_get_f1_qualification();
+--END $$;
+call f1_data.p_get_f1_laptimes();
 
 -- refresh materialized view
 REFRESH MATERIALIZED VIEW f1_data.m_v_f1_laptimes;
