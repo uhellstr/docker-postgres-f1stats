@@ -1,5 +1,11 @@
 FROM centos:8
 
+# Maintainer
+# ----------
+LABEL Maintainer="Ulf Hellstrom <oraminute@gmail.com>"
+
+RUN dnf -y module enable postgresql:12
+
 RUN dnf -y install epel-release \
     sudo \
     wget \
@@ -8,24 +14,19 @@ RUN dnf -y install epel-release \
     bash \
     vim \
     langpacks-en \ 
-    glibc-all-langpacks
-
-RUN dnf -y module enable postgresql:12
-RUN dnf -y install postgresql-server \
+    glibc-all-langpacks \
+    postgresql-server \
     postgresql-plpython3 \
-    postgresql-libs 
+    postgresql-libs \ 
+    && mkdir /scripts
+
+COPY ./scripts/* /scripts
 
 RUN pip3 install urllib3 \
     requests \
-    && mkdir scripts
-
-COPY ./scripts/* /scripts 
-
+    &&  chown -R postgres:postgres /scripts/*
+ 
 EXPOSE 5432
-
-USER root
-
-RUN chown -R postgres:postgres /scripts/*
 
 USER postgres
 
