@@ -22,12 +22,12 @@ psql -U f1_stats -d f1stats -f ./f1_tabs.sql
 echo "Creating stored procedures and functions...."
 psql -U f1_stats -d f1stats -f ./py_pgrest_func.sql
 psql -U f1_stats -d f1stats -f ./f_get_qualification_func.sql
-psql -U f1_stats -d f1stats -f ./p_get_qualification_func.sql
+psql -U f1_stats -d f1stats -f ./p_get_qualification.sql
 psql -U f1_stats -d f1stats -f ./f_get_f1_raceresults_func.sql
-psql -U f1_stats -d f1stats -f ./p_get_f1_raceresults_func.sql
+psql -U f1_stats -d f1stats -f ./p_get_f1_raceresults.sql
 psql -U f1_stats -d f1stats -f ./f_get_f1_race_dates_func.sql
 psql -U f1_stats -d f1stats -f ./f_get_f1_laptimes_func.sql
-psql -U f1_stats -d f1stats -f ./p_get_f1_laptimes_func.sql
+psql -U f1_stats -d f1stats -f ./p_get_f1_laptimes.sql
 psql -U f1_stats -d f1stats -f ./f_get_f1_driverstandings_func.sql
 psql -U f1_stats -d f1stats -f ./f_get_constructorstandings_func.sql
 echo "Loading formula 1 data from ergast..."
