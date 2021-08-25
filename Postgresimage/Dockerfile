@@ -20,7 +20,7 @@ RUN dnf -y install epel-release \
     postgresql-libs \ 
     && mkdir /scripts
 
-COPY ./scripts/* /scripts
+COPY ./scripts/* /scripts/
 
 RUN pip3 install urllib3 \
     requests \
