@@ -24,7 +24,8 @@ COPY ./scripts/* /scripts/
 
 RUN pip3 install urllib3 \
     requests \
-    &&  chown -R postgres:postgres /scripts/*
+    &&  chown -R postgres:postgres /scripts/* \
+    &&  chown -R postgres:postgres /var/lib/pgsql/data
  
 EXPOSE 5432
 
