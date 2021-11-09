@@ -11,7 +11,7 @@ else
   	/usr/bin/initdb --pgdata=/var/lib/pgsql/data -E 'UTF-8' --lc-collate='en_US.UTF-8' --lc-ctype='en_US.UTF-8'
   if test -f "$DBEXISTS"; then
 	  echo "host all  all    0.0.0.0/0  md5" >> /var/lib/pgsql/data/pg_hba.conf
-    echo "search_path = '\"\$user\", f1stats'" >> /var/lib/pgsql/data/postgresql.conf
+          echo "search_path = '\"\$user\", f1i_data'" >> /var/lib/pgsql/data/postgresql.conf
 	  echo "listen_addresses='*'" >> /var/lib/pgsql/data/postgresql.conf
   fi
 	/usr/bin/pg_ctl start -D /var/lib/pgsql/data -l /var/lib/pgsql/serverlog
