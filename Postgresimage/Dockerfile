@@ -1,7 +1,10 @@
-FROM fedora 
+FROM fedora:36
 
 # Maintainer
 # ----------
+# Before running this script
+# mkdir -p $HOME/docker/postgres
+# chown 26:26 $HOME/docker/postgres
 LABEL Maintainer="Ulf Hellstrom <oraminute@gmail.com>"
 
 RUN dnf -y module enable postgresql:12
